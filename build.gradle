@@ -20,8 +20,7 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:1.18.22"
     compileOnly "io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT"
     compileOnly "dev.plex:Plex:0.8"
-    implementation "LibsDisguises:parent:10.0.27-SNAPSHOT"
-
+    implementation "LibsDisguises:LibsDisguises:10.0.27"
 }
 
 group = "dev.plex"
