@@ -22,12 +22,14 @@ public class UndisguiseAllCMD extends PlexCommand
         if (args.length == 0)
         {
             Bukkit.getServer().getPluginManager().callEvent(new UndisguiseEvent(false));
-            return Component.text(sender.getName() + " - Undisguising all non-admins").color(NamedTextColor.RED);
+            Bukkit.broadcast(Component.text(sender.getName() + " - Undisguising all non-admins").color(NamedTextColor.RED));
+            return null;
         }
         else if (args[0].equalsIgnoreCase("-a"))
         {
             Bukkit.getServer().getPluginManager().callEvent(new UndisguiseEvent(true));
-            return Component.text(sender.getName() + " - Undisguising all players").color(NamedTextColor.RED);
+            Bukkit.broadcast(Component.text(sender.getName() + " - Undisguising all players").color(NamedTextColor.RED));
+            return null;
         }
         return usage();
     }

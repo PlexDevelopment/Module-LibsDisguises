@@ -22,5 +22,6 @@ public class LibsDisguises extends PlexModule
     @Override
     public void disable()
     {
+        unregisterListener(new DisguiseListener());
     }
 }

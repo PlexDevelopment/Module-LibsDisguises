@@ -25,6 +25,7 @@ public class DisguiseToggleCMD extends PlexCommand
         {
             Bukkit.getServer().getPluginManager().callEvent(new UndisguiseEvent(true));
         }
-        return Component.text(commandSender.getName() + " - " + (LibsDisguises.enabled ? "Enabling LibsDisguises" : "Disabling LibsDisguises")).color((LibsDisguises.enabled ? NamedTextColor.AQUA : NamedTextColor.RED));
+        Bukkit.broadcast(Component.text(commandSender.getName() + " - " + (LibsDisguises.enabled ? "Enabling LibsDisguises" : "Disabling LibsDisguises")).color((LibsDisguises.enabled ? NamedTextColor.AQUA : NamedTextColor.RED)));
+        return null;
     }
 }
