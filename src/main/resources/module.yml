@@ -1,0 +1,4 @@
+name: LibsDisguises
+main: dev.plex.LibsDisguises
+description: Control LibsDisguises with Plex
+version: 1.0
