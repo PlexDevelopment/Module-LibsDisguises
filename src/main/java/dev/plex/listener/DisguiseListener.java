@@ -34,9 +34,19 @@ public class DisguiseListener extends PlexListener
             else
             {
                 PlexPlayer plexPlayer = DataUtils.getPlayer(player.getUniqueId());
-                if (!plugin.getRankManager().isAdmin(plexPlayer))
+                if (plugin.getSystem().equalsIgnoreCase("ranks"))
                 {
-                    DisguiseAPI.undisguiseToAll(player);
+                    if (!plugin.getRankManager().isAdmin(plexPlayer))
+                    {
+                        DisguiseAPI.undisguiseToAll(player);
+                    }
+                }
+                else if (plugin.getSystem().equalsIgnoreCase("permissions"))
+                {
+                    if (!player.hasPermission("plex.libsdisguises.bypass"))
+                    {
+                        DisguiseAPI.undisguiseToAll(player);
+                    }
                 }
             }
         }
