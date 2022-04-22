@@ -1,4 +1,4 @@
-name: Plex-LibsDisguises
+name: Module-LibsDisguises
 main: dev.plex.LibsDisguises
 description: Control LibsDisguises with Plex
 version: 1.0
