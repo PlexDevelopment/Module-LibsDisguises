@@ -16,10 +16,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.projectlombok:lombok:1.18.22")
-    annotationProcessor("org.projectlombok:lombok:1.18.22")
+    compileOnly("org.projectlombok:lombok:1.18.24")
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
     compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
-    compileOnly("dev.plex:Plex:1.1-SNAPSHOT")
+    compileOnly("dev.plex:server:1.1-SNAPSHOT")
+    compileOnly("dev.plex:api:1.1-SNAPSHOT")
     implementation("LibsDisguises:LibsDisguises:10.0.28")
 }
 
@@ -45,7 +46,13 @@ tasks.getByName<Jar>("jar") {
 }
 
 tasks {
+    compileJava {
+        options.encoding = Charsets.UTF_8.name()
+    }
     javadoc {
-        options.memberLevel = JavadocMemberLevel.PRIVATE
+        options.encoding = Charsets.UTF_8.name()
+    }
+    processResources {
+        filteringCharset = Charsets.UTF_8.name()
     }
 }
