@@ -9,7 +9,7 @@ repositories {
     }
 
     maven {
-        url = uri("https://nexus.telesphoreo.me/repository/plex")
+        url = uri("https://nexus.telesphoreo.me/repository/plex/")
     }
 
     mavenCentral()
@@ -18,13 +18,13 @@ repositories {
 dependencies {
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
-    compileOnly("io.papermc.paper:paper-api:1.19.1-R0.1-SNAPSHOT")
-    compileOnly("dev.plex:server:1.2-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
+    compileOnly("dev.plex:server:1.3-SNAPSHOT")
     implementation("LibsDisguises:LibsDisguises:10.0.28")
 }
 
 group = "dev.plex"
-version = "1.2-SNAPSHOT"
+version = "1.3-SNAPSHOT"
 description = "Module-LibsDisguises"
 
 java {
