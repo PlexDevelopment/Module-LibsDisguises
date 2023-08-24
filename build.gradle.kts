@@ -12,6 +12,14 @@ repositories {
         url = uri("https://nexus.telesphoreo.me/repository/plex/")
     }
 
+    maven {
+        url = uri("https://repo.md-5.net/content/groups/public")
+    }
+
+    maven {
+        url = uri("https://repo.dmulloy2.net/repository/public/")
+    }
+
     mavenCentral()
 }
 
@@ -20,7 +28,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.28")
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
     compileOnly("dev.plex:server:1.3")
-    implementation("LibsDisguises:LibsDisguises:10.0.28")
+    implementation("LibsDisguises:LibsDisguises:10.0.37")
 }
 
 group = "dev.plex"
