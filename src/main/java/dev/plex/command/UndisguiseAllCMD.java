@@ -3,7 +3,6 @@ package dev.plex.command;
 import dev.plex.command.annotation.CommandParameters;
 import dev.plex.command.annotation.CommandPermissions;
 import dev.plex.listener.UndisguiseEvent;
-import dev.plex.rank.enums.Rank;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -13,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @CommandParameters(name = "undisguiseall", usage = "/<command> [-a]", description = "Undisguise all players", aliases = "undisall,uall")
-@CommandPermissions(level = Rank.ADMIN, permission = "plex.libsdisguises.undisguiseall")
+@CommandPermissions(permission = "plex.libsdisguises.undisguiseall")
 public class UndisguiseAllCMD extends PlexCommand
 {
     @Override

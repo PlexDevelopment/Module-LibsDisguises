@@ -9,7 +9,11 @@ import java.util.List;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.PlayerDisguise;
-import me.libraryaddict.disguise.disguisetypes.watchers.*;
+import me.libraryaddict.disguise.disguisetypes.watchers.AreaEffectCloudWatcher;
+import me.libraryaddict.disguise.disguisetypes.watchers.EnderDragonWatcher;
+import me.libraryaddict.disguise.disguisetypes.watchers.PhantomWatcher;
+import me.libraryaddict.disguise.disguisetypes.watchers.SlimeWatcher;
+import me.libraryaddict.disguise.disguisetypes.watchers.WitherWatcher;
 import me.libraryaddict.disguise.events.DisguiseEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -36,9 +40,11 @@ public class DisguiseListener extends PlexListener
     {
         event.setCancelled(true);
         PlexPlayer plexPlayer = null;
-        if (event.getCommandSender() instanceof Player player) plexPlayer = DataUtils.getPlayer(player.getUniqueId());
-        boolean ranksAndNotAdmin = plexPlayer != null && plugin.getSystem().equalsIgnoreCase("ranks") && !plugin.getRankManager().isAdmin(plexPlayer);
-        if (ranksAndNotAdmin && event.getDisguise().getType() == DisguiseType.FISHING_HOOK)
+        if (event.getCommandSender() instanceof Player player)
+        {
+            plexPlayer = DataUtils.getPlayer(player.getUniqueId());
+        }
+        if (event.getDisguise().getType() == DisguiseType.FISHING_HOOK)
         {
             event.getCommandSender().sendMessage(Component.text("You cannot use Fishing Hook disguises").color(NamedTextColor.RED));
             return;
@@ -54,11 +60,17 @@ public class DisguiseListener extends PlexListener
                 return;
             }
         }
-        if (event.getDisguise().getWatcher() instanceof EnderDragonWatcher watcher && watcher.getPhase() == 7) watcher.setPhase(6);
-        if (event.getDisguise().getWatcher() instanceof WitherWatcher watcher && watcher.getInvulnerability() > 2048) watcher.setInvulnerability(2048);
-        if (event.getDisguise().isPlayerDisguise() && plexPlayer != null && (ranksAndNotAdmin || (plugin.getSystem().equalsIgnoreCase("permissions") && !plexPlayer.getPlayer().hasPermission("plex.libsdisguises.player"))))
+        if (event.getDisguise().getWatcher() instanceof EnderDragonWatcher watcher && watcher.getPhase() == 7)
         {
-            PlayerDisguise playerDisguise = (PlayerDisguise) event.getDisguise();
+            watcher.setPhase(6);
+        }
+        if (event.getDisguise().getWatcher() instanceof WitherWatcher watcher && watcher.getInvulnerability() > 2048)
+        {
+            watcher.setInvulnerability(2048);
+        }
+        if (event.getDisguise().isPlayerDisguise() && plexPlayer != null && !plexPlayer.getPlayer().hasPermission("plex.libsdisguises.player"))
+        {
+            PlayerDisguise playerDisguise = (PlayerDisguise)event.getDisguise();
             String targetName = playerDisguise.getName();
             String origName = event.getDisguised().getName();
             playerDisguise.setName(origName);
@@ -68,7 +80,10 @@ public class DisguiseListener extends PlexListener
             playerDisguise.setDisplayedInTab(false);
             playerDisguise.setTablistName(origName);
         }
-        if (ranksAndNotAdmin && event.getDisguise().isHidePlayer()) event.getDisguise().setHidePlayer(false);
+        if (event.getDisguise().isHidePlayer())
+        {
+            event.getDisguise().setHidePlayer(false);
+        }
         if (event.getDisguise().getWatcher() instanceof AreaEffectCloudWatcher watcher)
         {
             if (watcher.getRadius() > 5)
@@ -83,7 +98,9 @@ public class DisguiseListener extends PlexListener
         event.getDisguise().getWatcher().setNameYModifier(safeYMod(event.getDisguise().getWatcher().getNameYModifier()));
         event.getDisguise().getWatcher().setYModifier(safeYMod(event.getDisguise().getWatcher().getYModifier()));
         if (event.getDisguise().getWatcher() instanceof SlimeWatcher watcher && watcher.getSize() > 10)
+        {
             watcher.setSize(10);
+        }
         if (event.getDisguise().getWatcher() instanceof PhantomWatcher watcher)
         {
             if (watcher.getSize() > 20)
@@ -112,19 +129,9 @@ public class DisguiseListener extends PlexListener
             else
             {
                 PlexPlayer plexPlayer = DataUtils.getPlayer(player.getUniqueId());
-                if (plugin.getSystem().equalsIgnoreCase("ranks"))
+                if (!player.hasPermission("plex.libsdisguises.bypass"))
                 {
-                    if (!plugin.getRankManager().isAdmin(plexPlayer))
-                    {
-                        DisguiseAPI.undisguiseToAll(player);
-                    }
-                }
-                else if (plugin.getSystem().equalsIgnoreCase("permissions"))
-                {
-                    if (!player.hasPermission("plex.libsdisguises.bypass"))
-                    {
-                        DisguiseAPI.undisguiseToAll(player);
-                    }
+                    DisguiseAPI.undisguiseToAll(player);
                 }
             }
         }

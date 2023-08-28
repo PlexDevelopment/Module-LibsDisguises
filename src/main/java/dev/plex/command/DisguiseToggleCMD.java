@@ -4,7 +4,6 @@ import dev.plex.LibsDisguises;
 import dev.plex.command.annotation.CommandParameters;
 import dev.plex.command.annotation.CommandPermissions;
 import dev.plex.listener.UndisguiseEvent;
-import dev.plex.rank.enums.Rank;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -14,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @CommandParameters(name = "disguisetoggle", description = "Toggle LibsDisguises", aliases = "dtoggle")
-@CommandPermissions(level = Rank.ADMIN, permission = "plex.libsdisguises.disguisetoggle")
+@CommandPermissions(permission = "plex.libsdisguises.disguisetoggle")
 public class DisguiseToggleCMD extends PlexCommand
 {
     @Override
