@@ -4,6 +4,8 @@ import dev.plex.LibsDisguises;
 import dev.plex.command.annotation.CommandParameters;
 import dev.plex.command.annotation.CommandPermissions;
 import dev.plex.listener.UndisguiseEvent;
+import java.util.Collections;
+import java.util.List;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -26,5 +28,11 @@ public class DisguiseToggleCMD extends PlexCommand
         }
         Bukkit.broadcast(Component.text(commandSender.getName() + " - " + (LibsDisguises.enabled ? "Enabling LibsDisguises" : "Disabling LibsDisguises")).color((LibsDisguises.enabled ? NamedTextColor.AQUA : NamedTextColor.RED)));
         return null;
+    }
+
+    @Override
+    public @NotNull List<String> smartTabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws IllegalArgumentException
+    {
+        return Collections.emptyList();
     }
 }

@@ -3,6 +3,8 @@ package dev.plex.command;
 import dev.plex.command.annotation.CommandParameters;
 import dev.plex.command.annotation.CommandPermissions;
 import dev.plex.listener.UndisguiseEvent;
+import java.util.Collections;
+import java.util.List;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -31,5 +33,19 @@ public class UndisguiseAllCMD extends PlexCommand
             return null;
         }
         return usage();
+    }
+
+    @Override
+    public @NotNull List<String> smartTabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws IllegalArgumentException
+    {
+        if (silentCheckPermission(sender, this.getPermission()))
+        {
+            if (args.length == 1)
+            {
+                return Collections.singletonList("-a");
+            }
+            return Collections.emptyList();
+        }
+        return Collections.emptyList();
     }
 }
